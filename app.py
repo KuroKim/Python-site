@@ -42,6 +42,18 @@ def detailed_post(id):
     return render_template("detailed_post.html", article=article)
 
 
+@app.route('/posts/<int:id>/delete')
+def detailed_post_delete(id):
+    article = Article.query.get_or_404(id)
+
+    try:
+        db.session.delete(article)
+        db.session.commit()
+        return redirect('/posts')
+    except:
+        return 'Error'
+
+
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article():
     if request.method == "POST":
