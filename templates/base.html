@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <title>{% block menu %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Main</a></li>
         <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="/posts" class="nav-link">Posts</a></li>
+        <li class="nav-item"><a href="/posts" class="nav-link">Posts</a></li>
         <li class="btn btn-warning"><a href="/create-article" class="nav-link">Create</a></li>
       </ul>
     </header>
-    {% block title %}{% endblock %}
+    {% block body %}{% endblock %}
 
     <footer class="container d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">

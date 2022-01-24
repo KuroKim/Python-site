@@ -32,7 +32,7 @@ def about():
 
 @app.route('/posts')
 def posts():
-    articles = Article.query.order_by(Article.date).all()
+    articles = Article.query.order_by(Article.date.desc()).all()
     return render_template("posts.html", articles=articles)
 
 
@@ -44,19 +44,15 @@ def create_article():
         text = request.form['text']
 
         article = Article(title=title, intro=intro, text=text)
+
         try:
             db.session.add(article)
             db.session.commit()
-            return redirect('/')
+            return redirect('/posts')
         except:
             return "Error"
     else:
         return render_template("create-article.html")
-
-
-#@app.route('/user/<string:name>/<int:id>')
-#def user(name, id):
- #   return f"Username: {name} | ID: {str(id)}"
 
 
 if __name__ == '__main__':
