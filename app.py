@@ -54,6 +54,26 @@ def detailed_post_delete(id):
         return 'Error'
 
 
+@app.route('/posts/<int:id>/change', methods=['POST', 'GET'])
+def detailed_post_change(id):
+    if request.method == "POST":
+        title = request.form['title']
+        intro = request.form['intro']
+        text = request.form['text']
+
+        article = Article(title=title, intro=intro, text=text)
+
+        try:
+            db.session.add(article)
+            db.session.commit()
+            return redirect('/posts')
+        except:
+            return "Error"
+    else:
+        article = Article.query.get(id)
+        return render_template("post-change.html", article=article)
+
+
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article():
     if request.method == "POST":
