@@ -25,8 +25,13 @@ def index():
 
 
 @app.route('/about')
-def faq():
+def about():
     return render_template("about.html")
+
+
+@app.route('/create-article')
+def create_article():
+    return render_template("create-article.html")
 
 
 #@app.route('/user/<string:name>/<int:id>')
